@@ -1,0 +1,2741 @@
+/* Загальні стилі */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Comic Sans MS", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #ffb3d9, #ffd9f2, #ffe6f7);
+    background-image: radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 182, 193, 0.3) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 192, 203, 0.4) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            circle at 40% 40%,
+            rgba(255, 105, 180, 0.2) 0%,
+            transparent 50%
+        );
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Додаємо CSS фон з сердечками */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff69b4' fill-opacity='0.1'%3E%3Cpath d='M30 45c-8.3-5-15-12-15-20 0-6.7 4.5-10 9-10s9 3.3 9 10c0-6.7 4.5-10 9-10s9 3.3 9 10c0 8-6.7 15-15 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff1493' fill-opacity='0.08'%3E%3Cpath d='M20 30c-5.5-3.3-10-8-10-13.3 0-4.5 3-6.7 6-6.7s6 2.2 6 6.7c0-4.5 3-6.7 6-6.7s6 2.2 6 6.7c0 5.3-4.5 10-10 13.3z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff91a4' fill-opacity='0.06'%3E%3Cpath d='M40 60c-11-6.7-20-16-20-26.7 0-8.9 6-13.3 12-13.3s12 4.4 12 13.3c0-8.9 6-13.3 12-13.3s12 4.4 12 13.3c0 10.7-9 20-20 26.7z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-position: 0 0, 30px 30px, 60px 10px;
+    background-size: 60px 60px, 40px 40px, 80px 80px;
+    animation: heartFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: bounceIn 1s ease-out;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #d63384;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.hearts {
+    font-size: 1.5rem;
+    animation: pulse 2s infinite;
+}
+
+/* Картка з питанням */
+.question-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.question-card {
+    background: linear-gradient(145deg, #fff0f6, #ffebf0);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
+    text-align: center;
+    border: 3px solid #f8d7da;
+    position: relative;
+    animation: slideInDown 1s ease-out;
+    max-width: 500px;
+    width: 100%;
+}
+
+.cat-emoji {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.question {
+    font-size: 1.8rem;
+    color: #d63384;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Кнопки відповідей */
+.answers {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.answer-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+    min-width: 120px;
+}
+
+.yes-btn {
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    color: white;
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+}
+
+.yes-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 107, 157, 0.6);
+    animation: wiggle 0.5s ease-in-out;
+}
+
+.no-btn {
+    background: linear-gradient(45deg, #ddd, #bbb);
+    color: #666;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.no-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    color: white;
+    box-shadow: 0 12px 25px rgba(255, 107, 157, 0.6);
+}
+
+.sparkles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.yes-btn:hover .sparkles {
+    opacity: 1;
+    animation: sparkle 1s ease-in-out infinite;
+}
+
+/* Контейнер результату */
+.result-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.result-card {
+    background: linear-gradient(145deg, #fff0f6, #ffebf0);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
+    text-align: center;
+    border: 3px solid #f8d7da;
+    animation: slideInUp 1s ease-out;
+    max-width: 500px;
+    width: 100%;
+}
+
+.result-text {
+    font-size: 1.5rem;
+    color: #d63384;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.result-emoji {
+    font-size: 4rem;
+    margin: 20px 0;
+    animation: bounce 1s infinite;
+}
+
+.meme-image {
+    max-width: 200px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Летящі сердечка */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    color: #ff6b9d;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 3s;
+}
+
+.heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 4s;
+}
+
+.heart:nth-child(6) {
+    left: 15%;
+    animation-delay: 5s;
+}
+
+.heart:nth-child(7) {
+    left: 75%;
+    animation-delay: 6s;
+}
+
+.heart:nth-child(8) {
+    left: 45%;
+    animation-delay: 7s;
+}
+
+/* Фонові статичні сердечка */
+.background-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-heart {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #ffb6c1;
+    opacity: 0.3;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.bg-heart:nth-child(1) {
+    top: 10%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.bg-heart:nth-child(2) {
+    top: 25%;
+    right: 8%;
+    animation-delay: 0.5s;
+}
+
+.bg-heart:nth-child(3) {
+    top: 45%;
+    left: 3%;
+    animation-delay: 1s;
+}
+
+.bg-heart:nth-child(4) {
+    top: 65%;
+    right: 5%;
+    animation-delay: 1.5s;
+}
+
+.bg-heart:nth-child(5) {
+    top: 80%;
+    left: 8%;
+    animation-delay: 2s;
+}
+
+.bg-heart:nth-child(6) {
+    top: 15%;
+    left: 50%;
+    animation-delay: 2.5s;
+}
+
+.bg-heart:nth-child(7) {
+    top: 35%;
+    right: 25%;
+    animation-delay: 3s;
+}
+
+.bg-heart:nth-child(8) {
+    top: 55%;
+    left: 75%;
+    animation-delay: 3.5s;
+}
+
+.bg-heart:nth-child(9) {
+    top: 75%;
+    right: 35%;
+    animation-delay: 4s;
+}
+
+.bg-heart:nth-child(10) {
+    top: 90%;
+    left: 60%;
+    animation-delay: 4.5s;
+}
+
+/* Котики по бокам */
+.cats-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cat {
+    position: absolute;
+    font-size: 3rem;
+    animation: catMove 8s ease-in-out infinite;
+}
+
+.cat:nth-child(1) {
+    top: 20%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.cat:nth-child(2) {
+    top: 60%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+.cat:nth-child(3) {
+    top: 80%;
+    left: 10%;
+    animation-delay: 4s;
+}
+
+.cat:nth-child(4) {
+    top: 40%;
+    right: 10%;
+    animation-delay: 6s;
+}
+
+@keyframes heartFloat {
+    0%,
+    100% {
+        background-position: 0 0, 30px 30px, 60px 10px;
+    }
+    33% {
+        background-position: 10px -10px, 40px 20px, 50px 0px;
+    }
+    66% {
+        background-position: -5px 5px, 25px 40px, 70px 20px;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes sparkle {
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes catMove {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(10px) rotate(-5deg);
+    }
+    75% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+}
+
+/* Респонсивність */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .question {
+        font-size: 1.4rem;
+    }
+
+    .question-card {
+        padding: 30px 20px;
+        margin: 0 10px;
+    }
+
+    .answers {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .answer-btn {
+        width: 200px;
+    }
+
+    .cat {
+        font-size: 2rem;
+    }
+}
+
+/* Стилі для нових кнопок та елементів */
+.try-again-btn,
+.restart-btn,
+.nav-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 8px;
+    font-family: inherit;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+.try-again-btn:hover,
+.restart-btn:hover,
+.nav-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.6);
+}
+
+.next-btn {
+    background: linear-gradient(45deg, #6bcf7f, #4caf50) !important;
+}
+
+.next-btn:hover {
+    box-shadow: 0 8px 20px rgba(107, 207, 127, 0.6) !important;
+}
+
+.finish-btn {
+    background: linear-gradient(45deg, #ffd93d, #ffb300) !important;
+}
+
+.finish-btn:hover {
+    box-shadow: 0 8px 20px rgba(255, 217, 61, 0.6) !important;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.question-number {
+    font-size: 1rem;
+    color: #d63384;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 8px 16px;
+    background: rgba(255, 182, 193, 0.3);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.social-credit-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.8),
+        rgba(255, 182, 193, 0.3)
+    );
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+}
+
+.social-credit-img {
+    max-width: 250px;
+    max-height: 150px;
+    border-radius: 10px;
+    margin: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.credit-text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d63384;
+    margin-top: 10px;
+}
+
+.final-message {
+    text-align: center;
+    padding: 20px;
+}
+
+.final-message h2 {
+    color: #d63384;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .question {
+        font-size: 1.2rem;
+    }
+
+    .question-card {
+        padding: 20px 15px;
+    }
+
+    .cat-emoji {
+        font-size: 2rem;
+    }
+}
+
+/* Стилі для слайдера */
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.beauty-image-container {
+    width: 200px;
+    height: 150px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+    border: 3px solid #ff6b9d;
+}
+
+.beauty-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.slider-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d63384;
+    text-align: center;
+}
+
+.beauty-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff6b9d, #ffb3d9, #6bcf7f);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.beauty-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s ease;
+}
+
+.beauty-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.6);
+}
+
+.beauty-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+.slider-submit-btn {
+    background: linear-gradient(45deg, #6bcf7f, #4caf50) !important;
+    margin-top: 10px;
+}
+
+.slider-submit-btn:hover {
+    box-shadow: 0 8px 20px rgba(107, 207, 127, 0.6) !important;
+}
+
+/* Стилі для результату слайдера */
+.slider-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.beauty-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d63384;
+    background: rgba(255, 182, 193, 0.3);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #ff6b9d;
+}
+
+.result-beauty-image {
+    width: 150px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ff6b9d;
+}
+
+/* Стилі для фото інтерфейсу */
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.task-description {
+    text-align: center;
+    background: rgba(255, 182, 193, 0.3);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+}
+
+.task-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.task-description p {
+    font-size: 1.1rem;
+    color: #d63384;
+    font-weight: bold;
+    margin: 0;
+}
+
+.photo-upload-area {
+    position: relative;
+    width: 250px;
+    height: 200px;
+}
+
+.upload-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 3px dashed #ff6b9d;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.upload-placeholder:hover {
+    border-color: #c44569;
+    background: rgba(255, 182, 193, 0.3);
+    transform: scale(1.02);
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    font-size: 1rem;
+    color: #d63384;
+    font-weight: bold;
+    text-align: center;
+}
+
+.photo-preview {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+}
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.change-photo-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 107, 157, 0.9);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.change-photo-btn:hover {
+    background: rgba(196, 69, 105, 0.9);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.photo-submit-btn {
+    background: linear-gradient(45deg, #6bcf7f, #4caf50) !important;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.photo-submit-btn:enabled {
+    opacity: 1;
+}
+
+.photo-submit-btn:enabled:hover {
+    box-shadow: 0 8px 20px rgba(107, 207, 127, 0.6) !important;
+}
+
+/* Стилі для результату фото */
+.photo-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.uploaded-photo {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid #ff6b9d;
+}
+
+.task-completed {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #4caf50;
+}
+
+.cute-message {
+    font-size: 1.2rem;
+    color: #d63384;
+    font-weight: bold;
+}
+
+/* Стилі для підсумку відповідей */
+.answers-summary {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #ff6b9d;
+    text-align: left;
+    max-width: 400px;
+}
+
+.answers-summary h3 {
+    color: #d63384;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.answer-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 182, 193, 0.2);
+    border-radius: 10px;
+    border-left: 4px solid #ff6b9d;
+}
+
+.answer-item strong {
+    color: #d63384;
+}
+
+.answer-item em {
+    color: #666;
+}
+
+/* Стилі для choice інтерфейсу */
+.choice-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.choice-options {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.choice-option {
+    background: linear-gradient(145deg, #fff0f6, #ffebf0);
+    border-radius: 20px;
+    padding: 20px;
+    border: 3px solid #f8d7da;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.2);
+    touch-action: manipulation; /* Покращує touch взаємодію */
+    -webkit-tap-highlight-color: rgba(
+        255,
+        107,
+        157,
+        0.3
+    ); /* Touch підсвічування на iOS */
+}
+
+.choice-option:hover,
+.choice-option:active,
+.choice-option:focus {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #ff6b9d;
+    box-shadow: 0 15px 35px rgba(214, 51, 132, 0.4);
+}
+
+/* Додаткові стилі для touch пристроїв */
+@media (hover: none) and (pointer: coarse) {
+    .choice-option:active {
+        transform: translateY(-2px) scale(1.02);
+        background: linear-gradient(145deg, #ffe4f0, #ffd7e3);
+    }
+}
+
+.choice-image {
+    width: 150px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ff6b9d;
+}
+
+.choice-label {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 8px;
+}
+
+.choice-description {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Стилі для результату choice */
+.choice-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.chosen-option {
+    background: linear-gradient(145deg, #fff0f6, #ffebf0);
+    border-radius: 20px;
+    padding: 25px;
+    border: 3px solid #ff6b9d;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(214, 51, 132, 0.3);
+}
+
+.chosen-image {
+    width: 180px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 3px solid #ff6b9d;
+}
+
+.chosen-label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 10px;
+}
+
+.chosen-description {
+    font-size: 1rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.love-message {
+    background: linear-gradient(
+        45deg,
+        rgba(255, 107, 157, 0.1),
+        rgba(196, 69, 105, 0.1)
+    );
+    border-radius: 15px;
+    padding: 15px 25px;
+    border: 2px dashed #ff6b9d;
+}
+
+.love-message p {
+    font-size: 1.2rem;
+    color: #d63384;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Респонсивність для choice */
+@media (max-width: 768px) {
+    .choice-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .choice-option {
+        width: 180px;
+    }
+
+    .choice-image,
+    .chosen-image {
+        width: 130px;
+        height: 100px;
+    }
+}
+
+/* Стилі для birthday інтерфейсу */
+.birthday-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.birthday-image-container {
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+    border: 3px solid #ff6b9d;
+}
+
+.birthday-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.birthday-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.birthday-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d63384;
+    text-align: center;
+}
+
+.birthday-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 3px solid #ff6b9d;
+    border-radius: 25px;
+    font-size: 1.3rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: #d63384;
+    font-weight: bold;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.birthday-input:focus {
+    border-color: #c44569;
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+    transform: scale(1.02);
+}
+
+.birthday-input::placeholder {
+    color: #ff6b9d;
+    opacity: 0.7;
+}
+
+.birthday-hint {
+    font-size: 1rem;
+    color: #d63384;
+    background: rgba(255, 182, 193, 0.3);
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #ff6b9d;
+}
+
+.birthday-submit-btn {
+    background: linear-gradient(45deg, #ffd93d, #ffb300) !important;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+}
+
+.birthday-submit-btn:hover {
+    box-shadow: 0 8px 20px rgba(255, 217, 61, 0.6) !important;
+}
+
+/* Стилі для результату birthday */
+.birthday-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.birthday-result-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border: 3px solid #ff6b9d;
+}
+
+.correct-answer {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #4caf50;
+    background: rgba(76, 175, 80, 0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #4caf50;
+}
+
+.wrong-answer {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #f44336;
+}
+
+.correct-info {
+    font-size: 1.2rem;
+    color: #d63384;
+    background: rgba(255, 182, 193, 0.3);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid #ff6b9d;
+    font-weight: bold;
+}
+
+.birthday-message {
+    font-size: 1.2rem;
+    color: #d63384;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(255, 182, 193, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px dashed #ff6b9d;
+}
+
+.birthday-hint {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+.love-points {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 107, 157, 0.1),
+        rgba(196, 69, 105, 0.1)
+    );
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: 2px solid #ff6b9d;
+    animation: pulse 2s infinite;
+}
+
+/* Стилі для гри */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.game-score {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 182, 193, 0.3);
+    padding: 15px 20px;
+    border-radius: 20px;
+    border: 2px solid #ff6b9d;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d63384;
+}
+
+.game-area {
+    position: relative;
+    width: 400px;
+    height: 500px; /* Збільшено з 300px до 500px */
+    background: linear-gradient(
+        180deg,
+        rgba(135, 206, 250, 0.3) 0%,
+        rgba(173, 216, 230, 0.3) 100%
+    );
+    border: 3px solid #ff6b9d;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px 0 120px 0; /* Додано великий відступ знизу (120px) */
+}
+
+.vanya-character {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    z-index: 20;
+    transition: left 0.1s ease-out;
+}
+
+.vanya-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid #ff6b9d;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.falling-item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+}
+
+.falling-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.game-instructions {
+    text-align: center;
+    background: rgba(255, 182, 193, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px dashed #ff6b9d;
+    font-size: 1.1rem;
+    color: #d63384;
+    max-width: 400px;
+}
+
+/* Стилі для інтро-екрану гри */
+.game-intro {
+    text-align: center;
+    background: rgba(255, 182, 193, 0.15);
+    padding: 0;
+    border-radius: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.game-intro h2 {
+    color: #d63384;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-rules {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+    margin: 15px 0;
+}
+
+.rule-item {
+    font-size: 1.2rem;
+    color: #d63384;
+    margin: 12px 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.food-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0 10px 35px;
+    font-size: 1.1rem;
+}
+
+.good-food {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 2px solid #28a745;
+    font-weight: bold;
+}
+
+.bad-food {
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.1);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 2px solid #dc3545;
+    font-weight: bold;
+}
+
+.game-start-btn {
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.game-start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.game-start-btn:active {
+    transform: translateY(0);
+}
+
+/* Стилі для результатів гри */
+.game-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: rgba(255, 182, 193, 0.1);
+    border-radius: 20px;
+    border: 2px solid #ff6b9d;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.game-result-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #ff6b9d;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.game-score-display {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+    width: 100%;
+}
+
+.final-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d63384;
+    margin-bottom: 10px;
+}
+
+.victory-message {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    animation: pulse 2s infinite;
+    margin: 10px 0;
+}
+
+.try-again-message {
+    font-size: 1.4rem;
+    color: #d63384;
+    margin: 10px 0;
+}
+
+.game-praise,
+.encouragement {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+}
+
+.game-stats,
+.game-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255, 182, 193, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px dashed #ff6b9d;
+    width: 100%;
+}
+
+.game-stats div,
+.game-tips div {
+    font-size: 1.1rem;
+    color: #d63384;
+    text-align: center;
+    font-weight: bold;
+}
+
+.score-effect {
+    font-family: "Comic Sans MS", cursive;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Адаптивність для гри */
+@media (max-width: 768px) {
+    .game-area {
+        width: 90vw;
+        max-width: 350px;
+        height: 400px; /* Збільшено з 250px до 400px */
+        margin-bottom: 140px; /* Ще більший відступ на мобільних */
+    }
+
+    .game-score {
+        max-width: 90vw;
+        font-size: 1rem;
+    }
+
+    .game-instructions {
+        max-width: 90vw;
+        font-size: 1rem;
+    }
+
+    .game-intro {
+        max-width: 90vw;
+        padding: 0;
+        margin: 15px auto;
+    }
+
+    .game-intro h2 {
+        font-size: 1.5rem;
+    }
+
+    .rule-item {
+        font-size: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .food-examples {
+        margin: 5px 0 5px 20px;
+        font-size: 1rem;
+    }
+
+    .vanya-character {
+        width: 50px;
+        height: 50px;
+    }
+
+    .falling-item {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Повноекранний режим гри */
+.fullscreen-game {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: linear-gradient(135deg, #ffb3d9, #ffd9f2, #ffe6f7) !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 10px !important;
+    max-width: none !important;
+    margin: 0 !important;
+}
+
+.fullscreen-game .game-area {
+    width: 100% !important;
+    height: 80vh !important; /* Збільшено з 60vh до 80vh */
+    max-width: none !important;
+    margin: 10px 0 150px 0 !important; /* Великий відступ знизу для повноекранного режиму */
+    border-radius: 10px !important;
+}
+
+.fullscreen-game .game-score {
+    max-width: none !important;
+    width: 100% !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 10px !important;
+}
+
+.fullscreen-game .vanya-character {
+    width: 60px !important;
+    height: 60px !important;
+}
+
+.fullscreen-game .falling-item {
+    width: 70px !important;
+    height: 70px !important;
+}
+
+.fullscreen-game .game-instructions {
+    max-width: none !important;
+    width: 100% !important;
+    font-size: 1rem !important;
+    margin: 5px 0 !important;
+    padding: 10px !important;
+}
+
+/* Мобільні кнопки управління */
+.game-mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+    gap: 20px;
+    position: fixed;
+    bottom: 120px; /* Підняв з дефолтного положення вище */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.mobile-control-btn {
+    background: linear-gradient(45deg, #ff6b9d, #c44569);
+    border: none;
+    color: white;
+    padding: 20px 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    flex: 1;
+    max-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-control-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(255, 107, 157, 0.5);
+    background: linear-gradient(45deg, #e55a8a, #a83d5a);
+}
+
+.mobile-control-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+/* Приховуємо інші елементи під час гри */
+body.game-active .container > *:not(.question-container) {
+    display: none !important;
+}
+
+body.game-active .floating-hearts,
+body.game-active .cats-container {
+    display: none !important;
+}
+
+/* Адаптивність для повноекранного режиму */
+@media (max-width: 768px) {
+    .fullscreen-game .game-score {
+        font-size: 1rem !important;
+        padding: 10px 15px !important;
+    }
+
+    .fullscreen-game .vanya-character {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .fullscreen-game .falling-item {
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    /* Мобільні кнопки управління - ще вище для малих екранів */
+    .game-mobile-controls {
+        bottom: 100px; /* Ще вище на мобільних */
+        max-width: 60px;
+        gap: 15px;
+    }
+
+    .mobile-control-btn {
+        padding: 15px 20px;
+        font-size: 1.5rem;
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* Додаткові налаштування для дуже маленьких екранів */
+@media (max-width: 480px) {
+    .game-mobile-controls {
+        bottom: 80px; /* Ще вище для маленьких екранів */
+        max-width: 600px;
+        gap: 10px;
+    }
+
+    .mobile-control-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.3rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Стилі для питання про тварин */
+.animal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.animal-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.animal-option {
+    background: rgba(255, 182, 193, 0.2);
+    border: 3px solid #ff6b9d;
+    border-radius: 20px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 200px;
+}
+
+.animal-option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+    border-color: #c44569;
+    background: rgba(255, 182, 193, 0.3);
+}
+
+.animal-option:active {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+}
+
+.animal-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.animal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.animal-emoji {
+    font-size: 2rem;
+}
+
+.animal-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #d63384;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Стилі для результату тварин */
+.animal-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: rgba(255, 182, 193, 0.15);
+    border-radius: 20px;
+    border: 3px solid #ff6b9d;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.animal-result-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 3px solid #ff6b9d;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+}
+
+.animal-result-info {
+    text-align: center;
+    width: 100%;
+}
+
+.selected-animal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid #ff6b9d;
+}
+
+.animal-result-emoji {
+    font-size: 2.5rem;
+}
+
+.animal-result-name {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d63384;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.animal-message {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 15px 0;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed #ff6b9d;
+}
+
+.love-reaction {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 107, 157, 0.1),
+        rgba(196, 69, 105, 0.1)
+    );
+    padding: 15px 25px;
+    border-radius: 25px;
+    border: 2px solid #ff6b9d;
+    animation: pulse 2s infinite;
+}
+
+/* Адаптивність для тварин */
+@media (max-width: 768px) {
+    .animal-options {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .animal-option {
+        min-height: 150px;
+        padding: 10px;
+    }
+
+    .animal-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .animal-name {
+        font-size: 1.1rem;
+    }
+
+    .animal-result-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .animal-result-emoji {
+        font-size: 2rem;
+    }
+
+    .animal-result-name {
+        font-size: 1.5rem;
+    }
+
+    .animal-message {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+
+    .love-reaction {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+    }
+}
+
+/* Стилі для питання про любов */
+.love-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.love-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.love-option {
+    background: linear-gradient(
+        45deg,
+        rgba(255, 182, 193, 0.3),
+        rgba(255, 192, 203, 0.2)
+    );
+    border: 3px solid #ff6b9d;
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 100px;
+    font-family: "Comic Sans MS", cursive;
+    font-weight: bold;
+    color: #d63384;
+}
+
+.love-option:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(255, 107, 157, 0.4);
+    border-color: #c44569;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 182, 193, 0.5),
+        rgba(255, 192, 203, 0.3)
+    );
+}
+
+.love-option:active {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+}
+
+.love-emoji {
+    font-size: 2.5rem;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.love-text {
+    font-size: 1.4rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes heartbeat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Стилі для результату питання про любов */
+.love-result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 182, 193, 0.2),
+        rgba(255, 192, 203, 0.1)
+    );
+    border-radius: 25px;
+    border: 3px solid #ff6b9d;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+}
+
+.love-result-info {
+    text-align: center;
+    width: 100%;
+}
+
+.selected-love {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 20px;
+    border: 3px solid #ff6b9d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.love-result-emoji {
+    font-size: 3rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.love-result-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d63384;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Comic Sans MS", cursive;
+}
+
+.love-message {
+    font-size: 1.3rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px dashed #ff6b9d;
+    font-style: italic;
+}
+
+.love-conclusion {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6b9d;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 107, 157, 0.15),
+        rgba(196, 69, 105, 0.1)
+    );
+    padding: 20px 30px;
+    border-radius: 25px;
+    border: 3px solid #ff6b9d;
+    animation: pulse 2s infinite;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Адаптивність для питання про любов */
+@media (max-width: 768px) {
+    .love-options {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .love-option {
+        min-height: 80px;
+        padding: 15px;
+    }
+
+    .love-emoji {
+        font-size: 2rem;
+    }
+
+    .love-text {
+        font-size: 1.2rem;
+    }
+
+    .love-result-emoji {
+        font-size: 2.5rem;
+    }
+
+    .love-result-text {
+        font-size: 1.6rem;
+    }
+
+    .love-message {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+
+    .love-conclusion {
+        font-size: 1.3rem;
+        padding: 15px 20px;
+    }
+}
+
+/* Стилі для питання про дівчину */
+.girlfriend-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.girlfriend-message {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #d63384;
+    text-shadow: 2px 2px 4px rgba(214, 51, 132, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.girlfriend-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    position: relative;
+    min-height: 200px;
+}
+
+.girlfriend-yes-btn {
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    border: none;
+    border-radius: 25px;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.girlfriend-yes-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 20, 147, 0.6);
+}
+
+.girlfriend-yes-btn .sparkles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: sparkleShow 2s ease-in-out infinite;
+}
+
+.girlfriend-no-btn {
+    background: linear-gradient(135deg, #666, #999);
+    border: none;
+    border-radius: 20px;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.girlfriend-no-btn:hover {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    transform: scale(1.1);
+}
+
+.girlfriend-hint {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #d63384;
+    font-style: italic;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+.girlfriend-success {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 105, 180, 0.9),
+        rgba(255, 20, 147, 0.9)
+    );
+    border-radius: 30px;
+    margin: 20px;
+    box-shadow: 0 15px 35px rgba(255, 20, 147, 0.5);
+    color: white;
+    animation: celebrationPulse 1s ease-in-out infinite;
+}
+
+.girlfriend-success h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.girlfriend-success p {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.hearts-celebration {
+    font-size: 2rem;
+    margin: 20px 0;
+    animation: heartBounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes celebrationPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes heartBounce {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes fadeInOut {
+    0%,
+    100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes sparkleShow {
+    0%,
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Мобільні стилі для girlfriend */
+@media (max-width: 768px) {
+    .girlfriend-message {
+        font-size: 1.5rem;
+    }
+
+    .girlfriend-success h2 {
+        font-size: 2rem;
+    }
+
+    .girlfriend-success p {
+        font-size: 1.2rem;
+    }
+
+    .hearts-celebration {
+        font-size: 1.5rem;
+    }
+}
+
+/* Стилі для святкових ефектів */
+.celebration-gif {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.celebration-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.6);
+    animation: gifPulse 2s ease-in-out infinite;
+}
+
+/* Стилі для popup гіфки */
+.gif-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gif-popup {
+    background: linear-gradient(135deg, #ff69b4, #ff1493, #dc143c);
+    border-radius: 30px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255, 20, 147, 0.8);
+    transform: scale(0);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.popup-celebration-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    animation: popupGifBounce 1s ease-in-out infinite;
+}
+
+.gif-popup-close {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.gif-popup-close:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 215, 0, 0.6);
+}
+
+.success-title {
+    font-size: 3.5rem !important;
+    animation: titleBounce 1s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+.success-message {
+    animation: messageSlide 2s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.success-message:nth-child(3) {
+    animation-delay: 0.5s;
+}
+.success-message:nth-child(4) {
+    animation-delay: 1s;
+}
+.success-message:nth-child(5) {
+    animation-delay: 1.5s;
+}
+
+.sparkle-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.sparkle {
+    font-size: 2rem;
+    animation: sparkleRotate 1s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) {
+    animation-delay: 0s;
+}
+.sparkle:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.sparkle:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.sparkle:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.sparkle:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* Контейнери для ефектів */
+.fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.firework {
+    position: absolute;
+    font-size: 2rem;
+    animation: fireworkExplode 3s ease-out forwards;
+}
+
+.heart-rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: hidden;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -50px;
+    animation: heartFall linear forwards;
+}
+
+.floating-hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: heartFloat 4s ease-in-out infinite;
+}
+
+/* Анімації */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes victoryShake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes gifPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(255, 20, 147, 0.6);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 20, 147, 0.8);
+    }
+}
+
+@keyframes gifBounce {
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(-2deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(2deg);
+    }
+}
+
+@keyframes popupGifBounce {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes popupFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes titleBounce {
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.1) rotate(1deg);
+    }
+}
+
+@keyframes messageSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sparkleRotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.3);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes fireworkExplode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes heartFall {
+    to {
+        top: 100vh;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes heartFloat {
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-20px) rotate(90deg);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translateY(-20px) rotate(270deg);
+        opacity: 0.8;
+    }
+}
+
+/* Мобільні налаштування для ефектів */
+@media (max-width: 768px) {
+    .celebration-image {
+        max-width: 250px;
+    }
+
+    .success-title {
+        font-size: 2.5rem !important;
+    }
+
+    .sparkle {
+        font-size: 1.5rem;
+    }
+
+    .firework {
+        font-size: 1.5rem;
+    }
+
+    .floating-heart {
+        font-size: 1.5rem;
+    }
+
+    .popup-celebration-image {
+        max-width: 300px;
+    }
+
+    .gif-popup {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .gif-popup-close {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+}
+
+/* Стилі для футера */
+.footer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
+.reset-progress-btn {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+}
+
+.reset-progress-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #5a6268, #343a40);
+}
+
+.reset-progress-btn:active {
+    transform: translateY(0);
+}
+
+/* Стилі для сповіщень */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+    z-index: 10001;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Мобільні стилі для футера */
+@media (max-width: 768px) {
+    .footer {
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .reset-progress-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+
+    .notification {
+        font-size: 0.9rem;
+        padding: 12px 16px;
+        margin: 0 10px;
+        max-width: calc(100vw - 20px);
+    }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>💕 Опитувальник для моєї коханої 💕</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>💖 Спеціальний опитувальник 💖</h1>
+                <div class="hearts">💕 💖 💕 💖 💕</div>
+            </div>
+
+            <div class="question-container">
+                <div class="question-card">
+                    <div class="question-number">Питання 1 з 3</div>
+                    <div class="cat-emoji">🐱</div>
+                    <h2 class="question">Чи вважаєш ти мене милим? 🥺</h2>
+
+                    <div class="answers">
+                        <button
+                            class="answer-btn yes-btn"
+                            onclick="handleAnswer('yes')"
+                        >
+                            <span class="btn-text">Так 💕</span>
+                            <div class="sparkles">✨</div>
+                        </button>
+
+                        <button
+                            class="answer-btn no-btn"
+                            onclick="handleAnswer('no')"
+                        >
+                            <span class="btn-text">Ні 💔</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-container" id="result" style="display: none">
+                <div class="result-card">
+                    <div id="result-content"></div>
+                </div>
+            </div>
+
+            <div class="floating-hearts">
+                <div class="heart">💖</div>
+                <div class="heart">💕</div>
+                <div class="heart">💝</div>
+                <div class="heart">💗</div>
+                <div class="heart">💘</div>
+                <div class="heart">💞</div>
+                <div class="heart">💓</div>
+                <div class="heart">💖</div>
+            </div>
+
+            <div class="background-hearts">
+                <div class="bg-heart">💖</div>
+                <div class="bg-heart">💕</div>
+                <div class="bg-heart">💘</div>
+                <div class="bg-heart">💝</div>
+                <div class="bg-heart">💗</div>
+                <div class="bg-heart">💞</div>
+                <div class="bg-heart">💓</div>
+                <div class="bg-heart">💖</div>
+                <div class="bg-heart">💕</div>
+                <div class="bg-heart">💘</div>
+            </div>
+
+            <div class="cats-container">
+                <div class="cat">😺</div>
+                <div class="cat">😸</div>
+                <div class="cat">😻</div>
+                <div class="cat">🙀</div>
+            </div>
+
+            <!-- Футер з кнопкою скидання прогресу -->
+            <footer class="footer">
+                <button
+                    class="reset-progress-btn"
+                    onclick="resetProgress()"
+                    title="Скинути прогрес на перше питання"
+                >
+                    🔄 Скинути прогрес
+                </button>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
